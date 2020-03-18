@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pokemon Layout Maker</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/my.css">
+  </head>
+  <body>
+    <div class="a-container">
+      <div class="editor">
+        <div class="team-editor">
+
+          <button>Add Pokemon</button>
+
+          <div class="pokemon-details">
+            <img id="pokemon-img" src="https://user-images.githubusercontent.com/13006910/76887468-64de6880-6893-11ea-8712-d9b69391ee85.png" alt="sprite" width=100 height=100>
+            <div>
+              <label for="name">Name</label>
+              <input id="name-input" type="text" name="pokemon-name">
+              <div id="name-list"></div>
+            </div>
+            <div class="level">
+              <label for="level">Level</label>
+              <input type="number" name="level" value="5">
+            </div>
+            <select>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="genderless">Genderless</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+      <div class="preview">&nbsp;</div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./static/js/my.js"></script>
+  <script type="text/javascript">
+    pokemon_details = document.getElementsByClassName("pokemon-details")[0]
+    pokemon_details.style.display = "block"
+
+    get_pokedex()
+
+    name_input = document.getElementById("name-input")
+    name_list = document.getElementById("name-list")
+
+    name_input.addEventListener("input", (e) => {
+      if (e.target.value.length > 0)
+        onNameChange(e, name_list)
+      else {
+        name_list.style.display = "none"
+      }
+    })
+    name_input.addEventListener("focusout", () => {
+      setTimeout(() => name_list.style.display = "none", 200)
+    })
+
+    name_input.addEventListener("focus", () => name_list.style.display = "block")
+
+
+  </script>
+</html>
