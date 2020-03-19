@@ -60,7 +60,7 @@ function select_pokemon(name, formIndex) {
   form.querySelector("#name-input").value = name
   form.querySelector("#pokemon-img").setAttribute("src", image_url)
 
-  team[formIndex] = {name: name, dex_entry: pokedex[i].dex_entry, image: image_url}
+  team[formIndex] = {name: name, dex_url: pokedex[i].pokemon_species.url, image: image_url}
   create_cards()
 }
 

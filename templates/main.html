@@ -1,4 +1,11 @@
-{% extends "index.html" %}
+{% extends "layout.html" %}
+
+{% block header %}
+<div class="header-float">
+  Work In Progress - check the repository at <a target="_blank" href="https://github.com/MirageOwl/PokemonLayoutMaker">Github</a>
+</div>
+{% endblock %}
+
 {% block left %}
 <div class="row pokemon-form">
   <div class="col-4">
@@ -39,4 +46,10 @@
 
 {% block right %}
 <div id="preview" class="row"></div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer-float">
+Made by MirageOwl . <a target="_blank" href="github.com/mirageowl">Github</a> . <a target="_blank" href="twitter.com/mirageowl">Twitter</a>
+</div>
 {% endblock %}
