@@ -1,3 +1,3 @@
 # Pokemon Layout Maker - WIP
 
-Website: [pokemon-layout.herokuapp.com](pokemon-layout.herokuapp.com)
+Website: [pokemon-layout.herokuapp.com](http://pokemon-layout.herokuapp.com)
