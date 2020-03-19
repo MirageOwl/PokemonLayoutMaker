@@ -1,35 +1,42 @@
 {% extends "index.html" %}
-{% block content %}
-<div class="container">
-  <div class="row mt-3">
-    <div class="left col-md-4">
-      <div class="row">
-        <div class="col-4">
-          <img id="pokemon-img" src="https://user-images.githubusercontent.com/13006910/76887468-64de6880-6893-11ea-8712-d9b69391ee85.png" alt="sprite" width=100 height=100>
-        </div>
-        <div class="col-8">
-          <div class="row">
-            <div class="col-6 pokemon-name">
-              <span class="input-label">Name</span>
-              <input id="name-input" type="text" class="form-control" placeholder="Name">
-            </div>
-            <div class="col-6 pokemon-nickname">
-              <span class="input-label">Nickname</span>
-              <input id="nickname-input" type="text" class="form-control" placeholder="Nickname">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6 pokemon-level">
-              <span class="input-label">Level</span>
-              <input type="number" class="form-control" placeholder=5 min=1 max=100>
-            </div>
-          </div>
-        </div>
+{% block left %}
+<div class="row pokemon-form">
+  <div class="col-4">
+    <img id="pokemon-img" src="https://user-images.githubusercontent.com/13006910/76887468-64de6880-6893-11ea-8712-d9b69391ee85.png" alt="sprite" width=100 height=100>
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6 pokemon-name">
+        <span class="input-label">Name</span>
+        <input id="name-input" type="text" class="form-control" placeholder="Name">
+      </div>
+      <div class="col-6 pokemon-nickname">
+        <span class="input-label">Nickname</span>
+        <input id="nickname-input" type="text" class="form-control" placeholder="Nickname">
       </div>
     </div>
-    <div class="right col-md-8">
-      b
+    <div class="row">
+      <div class="col-6 pokemon-level">
+        <span class="input-label">Level</span>
+        <input type="number" class="form-control" value=5 min=1 max=100>
+      </div>
+      <div class="col-6 pokemon-gender">
+        <span class="input-label">Gender</span>
+        <select class="form-control" name="pokemon-gender" id="gender-input">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="genderless">Genderless</option>
+        </select>
+      </div>
     </div>
+    <span class="del"><i class="fas fa-trash"></i></span>
   </div>
 </div>
+<button id="add-pokemon" class="btn btn-secondary" onclick="add_pokemon(event)">
+  <i class="fas fa-plus"></i> Add Pokemon
+</button>
+{% endblock %}
+
+{% block right %}
+<div id="preview" class="row"></div>
 {% endblock %}

@@ -32,12 +32,26 @@ body {
   background-color: #433;
 }
 
-.input-label {
-  font-size: .8em;
+.btn, .input-label {
+  font-size: .7em;
   margin-left: 10%;
 }
 
-input.form-control {
-  height: 24px;
+.form-control {
+  height: 2em;
   font-size:0.8em;
+}
+
+.pokemon-form {
+  margin: 1em;
+}
+
+.del {
+  position: absolute;
+  right: -1em;
+  top: 0;
+}
+.del:hover {
+  color: #844;
+  cursor: pointer;
 }
