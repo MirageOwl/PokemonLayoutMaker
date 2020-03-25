@@ -59,8 +59,11 @@ function select_pokemon(name, formIndex) {
 
   form.querySelector("#name-input").value = name
   form.querySelector("#pokemon-img").setAttribute("src", image_url)
+  const nickname = form.querySelector("#nickname-input").value
+  const level = form.querySelector("#level-input").value
+  const gender = form.querySelector("#gender-input").value
 
-  team[formIndex] = {name: name, dex_url: pokedex[i].pokemon_species.url, image: image_url}
+  team[formIndex] = {name: name, dex_url: pokedex[i].pokemon_species.url, image: image_url, nickname: nickname, level: level, gender: gender}
   create_cards()
 }
 
@@ -72,8 +75,10 @@ function onNameChange(e, form) {
   html += "<ul>\n"
   var formIndex = 0
   while(form.previousElementSibling !== null) {
-    formIndex += 1
     form = form.previousElementSibling
+    if (form.classList.contains("pokemon-form")) {
+      formIndex += 1
+    }
   }
   filtered_list.forEach((name, i) => {
     html += "<li id=name-"+i+" onclick=\"select_pokemon('"+name+"',"+formIndex+")\">"+ name +"</li>\n"
@@ -114,24 +119,55 @@ function typeahead(form) {
 
 const preview = document.querySelector("#preview")
 
-function create_card(pokemon) {
+function create_card(pokemon, i) {
   console.log(pokemon)
   const card = document.createElement("div")
-  card.setAttribute("class", "col")
+  card.setAttribute("class", "pokemon-card row")
   const image = document.createElement("img")
   image.setAttribute("src", pokemon.image)
-  image.setAttribute("width", "100")
-  card.appendChild(image)
+  image.setAttribute("style", "width:100%")
+  const imageDiv = document.createElement("div")
+  imageDiv.setAttribute("class", "col-4")
+  imageDiv.setAttribute("style", "padding: 0")
+  imageDiv.appendChild(image)
+  card.appendChild(imageDiv)
+  const info = document.createElement("div")
+  info.setAttribute("class", "col-8")
+  const _nickname = document.createElement("div")
+  _nickname.setAttribute("class", "pokemon-card-nickname")
+  _nickname.innerText = pokemon.nickname
+  const _name = document.createElement("div")
+  _name.setAttribute("class", "pokemon-card-name")
+  _name.innerText = pokemon.name
+  const _level = document.createElement("div")
+  _level.setAttribute("class", "pokemon-card-level")
+  _level.innerText = pokemon.level
+  const _gender = document.createElement("div")
+  _gender.setAttribute("class", "pokemon-card-gender")
+  if (pokemon.gender === "female")
+    _gender.innerHTML = "<i class=\"fa fa-venus\" aria-hidden=\"true\"></i>"
+  else if (pokemon.gender === "male")
+    _gender.innerHTML = "<i class=\"fa fa-mars\" aria-hidden=\"true\"></i>"
+  else
+    _gender.innerText = ""
+  info.appendChild(_nickname)
+  info.appendChild(_name)
+  info.appendChild(_level)
+  info.appendChild(_gender)
+  card.appendChild(info)
 
-  preview.appendChild(card)
+  preview.querySelector("#row"+parseInt(i/2)).appendChild(card)
 }
 function create_cards() {
   // clear preview
-  while(preview.lastChild != null) {
-    preview.lastChild.remove()
-  }
+
+  preview.childNodes.forEach((el, i) => {
+    while(el.lastChild != null) {
+      el.lastChild.remove()
+    }
+  })
   team.forEach((pokemon, i) => {
-    if(pokemon.hasOwnProperty('name')) create_card(pokemon)
+    if(pokemon.hasOwnProperty('name')) create_card(pokemon, i)
   })
 }
 
